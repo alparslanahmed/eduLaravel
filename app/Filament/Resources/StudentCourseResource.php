@@ -23,7 +23,20 @@ class StudentCourseResource extends Resource
     {
         return $form
             ->schema([
-                //
+                Forms\Components\Select::make('student_id')
+                    ->label('Student')
+                    ->relationship('student', 'name')
+                    ->required()
+                    ->searchable()
+                    ->preload()
+                    ->placeholder('Select a student'),
+                Forms\Components\Select::make('course_id')
+                    ->label('Course')
+                    ->relationship('course', 'name')
+                    ->required()
+                    ->searchable()
+                    ->preload()
+                    ->placeholder('Select a course'),
             ]);
     }
 
@@ -31,10 +44,22 @@ class StudentCourseResource extends Resource
     {
         return $table
             ->columns([
-                //
+                Tables\Columns\TextColumn::make('student.name')
+                    ->label('Student')
+                    ->searchable()
+                    ->sortable(),
+                Tables\Columns\TextColumn::make('course.name')
+                    ->label('Course')
+                    ->searchable()
+                    ->sortable(),
             ])
             ->filters([
-                //
+                Tables\Filters\SelectFilter::make('course_id')
+                    ->label('Course')
+                    ->relationship('course', 'name')
+                    ->searchable()
+                    ->multiple()
+                    ->preload(),
             ])
             ->actions([
                 Tables\Actions\EditAction::make(),

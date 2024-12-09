@@ -77,8 +77,7 @@ class TeacherResource extends Resource
         return $table
             ->columns([
                 Tables\Columns\ImageColumn::make('avatar')
-                    ->label('Avatar')
-                    ->sortable(),
+                    ->label('Avatar'),
                 Tables\Columns\TextColumn::make('name')
                     ->searchable()
                     ->sortable(),
@@ -91,10 +90,6 @@ class TeacherResource extends Resource
                 Tables\Columns\TextColumn::make('address')
                     ->searchable()
                     ->sortable(),
-                Tables\Columns\TextColumn::make('user.name')
-                    ->searchable()
-                    ->sortable()
-                    ->label('User'),
                 Tables\Columns\TextColumn::make('school.name')
                     ->searchable()
                     ->sortable()

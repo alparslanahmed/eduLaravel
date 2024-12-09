@@ -17,13 +17,35 @@ class StudentParentResource extends Resource
 {
     protected static ?string $model = StudentParent::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+    protected static ?string $navigationIcon = 'heroicon-o-users';
 
     public static function form(Form $form): Form
     {
         return $form
             ->schema([
-                //
+                Forms\Components\FileUpload::make('avatar')
+                    ->label('Avatar')
+                    ->image()
+                    ->avatar()
+                    ->columnSpan('full')
+                    ->required(),
+                Forms\Components\TextInput::make('name')
+                    ->label('Name')
+                    ->required(),
+                Forms\Components\TextInput::make('email')
+                    ->label('Email')
+                    ->email()
+                    ->required(),
+                Forms\Components\TextInput::make('phone')
+                    ->label('Phone')
+                    ->required(),
+                Forms\Components\TextInput::make('address')
+                    ->label('Address')
+                    ->required(),
+                Forms\Components\Select::make('user_id')
+                    ->label('User')
+                    ->relationship('user', 'name')
+                    ->required(),
             ]);
     }
 
@@ -31,7 +53,24 @@ class StudentParentResource extends Resource
     {
         return $table
             ->columns([
-                //
+                Tables\Columns\ImageColumn::make('avatar')
+                    ->label('Avatar'),
+                Tables\Columns\TextColumn::make('name')
+                    ->label('Name')
+                    ->searchable()
+                    ->sortable(),
+                Tables\Columns\TextColumn::make('email')
+                    ->label('Email')
+                    ->searchable()
+                    ->sortable(),
+                Tables\Columns\TextColumn::make('phone')
+                    ->label('Phone')
+                    ->searchable()
+                    ->sortable(),
+                Tables\Columns\TextColumn::make('address')
+                    ->label('Address')
+                    ->searchable()
+                    ->sortable(),
             ])
             ->filters([
                 //

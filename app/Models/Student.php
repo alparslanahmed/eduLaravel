@@ -17,6 +17,7 @@ class Student extends Model
         'grade_id',
         'campus_id',
         'school_id',
+        'avatar'
     ];
 
     public function user()
