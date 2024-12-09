@@ -14,6 +14,7 @@ class Teacher extends Model
         'user_id',
         'campus_id',
         'school_id',
+        'avatar'
     ];
 
     public function user()
@@ -30,6 +31,4 @@ class Teacher extends Model
     {
         return $this->belongsTo(School::class);
     }
-
-
 }

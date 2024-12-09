@@ -17,13 +17,21 @@ class GradeResource extends Resource
 {
     protected static ?string $model = Grade::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+    protected static ?string $navigationIcon = 'heroicon-o-academic-cap';
 
     public static function form(Form $form): Form
     {
         return $form
             ->schema([
-                //
+                Forms\Components\TextInput::make('name')
+                    ->label('Name')
+                    ->required(),
+                Forms\Components\TextInput::make('slug')
+                    ->label('Slug'),
+                Forms\Components\Textarea::make('description')
+                    ->label('Description')
+                    ->maxLength(1000)
+                    ->columnSpan('full'),
             ]);
     }
 
@@ -31,7 +39,12 @@ class GradeResource extends Resource
     {
         return $table
             ->columns([
-                //
+                Tables\Columns\TextColumn::make('name')
+                    ->searchable()
+                    ->sortable(),
+                Tables\Columns\TextColumn::make('slug')
+                    ->searchable()
+                    ->sortable(),
             ])
             ->filters([
                 //
